@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Birzeit University Map</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-KOD2e8hMzWe68W1hfyOQMRIEdGLIDGf04u/Mx7LgE3UZZRtgAeRm8q/50RZjAmx8" crossorigin=""/>
-
-    <!-- Leaflet JavaScript -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-F7K3tv2UmlnV5QAvdhsHBoBJnOPHgI/h3ozwZUmfshztCK5n8CfmhTI6qH9RxKwq" crossorigin=""></script>
+    <title>Satellite Imagery Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
-    <div id="map" style="width: 100%; height: 600px;"></div>
 
+    <h1>Satellite Imagery Map</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Initialize the map
-        var map = L.map('map').setView([31.9067, 35.1859], 16); // Centered on Birzeit University
+        // Center the map on Birzeit University
+        var map = L.map('map').setView([31.9067, 35.1859], 16); // Coordinates for Birzeit University
 
-        // Add Mapbox Satellite tiles
-        L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=YOUR_MAPBOX_ACCESS_TOKEN', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 19,
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'YOUR_MAPBOX_ACCESS_TOKEN'
+        // Add Esri Satellite imagery tile layer
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; <a href="https://www.esri.com/en-us/home">Esri</a> contributors'
         }).addTo(map);
 
         // Add a marker at Birzeit University
         L.marker([31.9067, 35.1859]).addTo(map)
-            .bindPopup("<b>Birzeit University</b><br>Welcome to the campus!")
+            .bindPopup('Birzeit University')
             .openPopup();
     </script>
+
 </body>
 </html>
-
