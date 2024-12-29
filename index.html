@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapbox Map</title>
+    <title>Mapbox Full-Screen Map</title>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet" />
     <style>
-        body { 
-            margin: 0; 
-            padding: 20px;
+        /* Ensure the map occupies the full screen */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
         }
-        #map { 
+        #map {
             width: 100%;
-            height: 80vh;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 100%;
         }
     </style>
 </head>
@@ -27,8 +28,8 @@
         
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/satellite-v9', // Using default Mapbox streets style
-            center: [35.1820, 31.96000],
+            style: 'mapbox://styles/mapbox/satellite-v9', // Using satellite style
+            center: [35.1820, 31.96000], // Longitude, Latitude
             zoom: 14
         });
 
