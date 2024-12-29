@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,8 @@
     <title>Mapbox Full-Screen Map</title>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet" />
     <style>
-        /* Ensure the map occupies the full screen */
-        body {
+        /* Full-screen map */
+        html, body {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -24,35 +25,37 @@
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
     <script>
+        // Use your valid Mapbox Access Token
         mapboxgl.accessToken = 'pk.eyJ1IjoiaGFtZWRoYWRhZCIsImEiOiJjbTNsdHBwaG4wbXo1MmxzZHQ2bGM2azFvIn0.pp7ow3gyNYL7pIA0ZQmHuw';
         
+        // Initialize the map
         const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/satellite-v9', // Using satellite style
-            center: [35.1820, 31.96000], // Longitude, Latitude
-            zoom: 14
+            container: 'map', // The ID of the div for the map
+            style: 'mapbox://styles/mapbox/satellite-v9', // Satellite imagery style
+            center: [35.1820, 31.9600], // Center the map on these coordinates
+            zoom: 14 // Initial zoom level
         });
 
-        // Add navigation controls
+        // Add navigation controls (zoom in/out)
         map.addControl(new mapboxgl.NavigationControl());
 
-        // Add fullscreen control
+        // Add a fullscreen button
         map.addControl(new mapboxgl.FullscreenControl());
 
-        // Add scale control
+        // Add a scale control
         map.addControl(new mapboxgl.ScaleControl({
-            maxWidth: 80,
+            maxWidth: 100,
             unit: 'metric'
         }));
 
-        // Add error handling
-        map.on('error', (e) => {
-            console.error('Mapbox error:', e.error);
+        // Log when the map loads successfully
+        map.on('load', () => {
+            console.log('Map loaded successfully!');
         });
 
-        // Log when map loads successfully
-        map.on('load', () => {
-            console.log('Map loaded successfully');
+        // Handle errors and log them
+        map.on('error', (e) => {
+            console.error('Mapbox error:', e.error);
         });
     </script>
 </body>
